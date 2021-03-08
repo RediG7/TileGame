@@ -1,8 +1,8 @@
-package guleksi.redi.tiles;
+package guleksi.redi.tilegame.tiles;
 
-import guleksi.redi.gfx.Assets;
+import guleksi.redi.tilegame.gfx.Assets;
 
-public class RockTile extends  Tile{
+public class RockTile extends Tile {
     public RockTile(int id) {
         super(Assets.stone, id);
     }

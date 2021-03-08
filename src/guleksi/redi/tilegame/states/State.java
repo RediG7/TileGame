@@ -1,4 +1,6 @@
-package guleksi.redi.states;
+package guleksi.redi.tilegame.states;
+
+import guleksi.redi.tilegame.Game;
 
 import java.awt.*;
 
@@ -19,6 +21,13 @@ public abstract class State {
 
 
     // CLASS
+
+    protected Game game;
+
+    public State(Game game) {
+        this.game = game;
+    }
+
     public abstract void tick();
 
     public abstract void render(Graphics g);

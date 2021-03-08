@@ -1,6 +1,6 @@
-package guleksi.redi.tiles;
+package guleksi.redi.tilegame.tiles;
 
-import guleksi.redi.gfx.Assets;
+import guleksi.redi.tilegame.gfx.Assets;
 
 public class DirtTile extends Tile {
 

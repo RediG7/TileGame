@@ -1,13 +1,17 @@
-package guleksi.redi.entities;
+package guleksi.redi.tilegame.entities;
+
+import guleksi.redi.tilegame.Game;
 
 import java.awt.*;
 
 public abstract class Entity {
 
+    protected Game game;
     protected float x, y; // like private but subclasses can access
     protected int width, height;
 
-    public Entity(float x, float y, int width, int height) {
+    public Entity(Game game, float x, float y, int width, int height) {
+        this.game = game;
         this.x = x;
         this.y = y;
         this.width = width;

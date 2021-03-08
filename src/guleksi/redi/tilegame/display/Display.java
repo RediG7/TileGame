@@ -1,4 +1,4 @@
-package guleksi.redi.display;
+package guleksi.redi.tilegame.display;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,6 +41,7 @@ public class Display {
         // stays at width and height that we give it
         canvas.setMaximumSize(new Dimension(width, height));
         canvas.setMinimumSize(new Dimension(width, height));
+        canvas.setFocusable(false); // !important
 
         // adding canvas to JFrame
         frame.add(canvas);
@@ -50,6 +51,10 @@ public class Display {
 
     public Canvas getCanvas() {
         return canvas;
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 
 }

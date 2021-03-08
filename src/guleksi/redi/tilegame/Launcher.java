@@ -5,7 +5,7 @@ public class Launcher {
     public static void main(String[] args) {
 
         // temp code
-        Game game = new Game("My game again", 400, 400);
+        Game game = new Game("My game again", 640, 360);
         game.start();
     }
 }

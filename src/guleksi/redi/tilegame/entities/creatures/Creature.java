@@ -1,6 +1,7 @@
-package guleksi.redi.entities.creatures;
+package guleksi.redi.tilegame.entities.creatures;
 
-import guleksi.redi.entities.Entity;
+import guleksi.redi.tilegame.Game;
+import guleksi.redi.tilegame.entities.Entity;
 
 public abstract class Creature extends Entity {
 
@@ -14,8 +15,8 @@ public abstract class Creature extends Entity {
     protected float xMove, yMove;
 
 
-    public Creature(float x, float y, int width, int height) {
-        super(x, y, width, height);
+    public Creature(Game game, float x, float y, int width, int height) {
+        super(game, x, y, width, height);
         health = DEFAULT_HEALTH;
         speed = DEFAULT_SPEED;
         xMove = 0;

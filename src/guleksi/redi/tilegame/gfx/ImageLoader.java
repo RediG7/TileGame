@@ -1,4 +1,4 @@
-package guleksi.redi.gfx;
+package guleksi.redi.tilegame.gfx;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

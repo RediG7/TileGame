@@ -1,4 +1,4 @@
-package guleksi.redi.tiles;
+package guleksi.redi.tilegame.tiles;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

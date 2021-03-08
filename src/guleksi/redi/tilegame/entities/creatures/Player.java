@@ -1,23 +1,21 @@
-package guleksi.redi.entities.creatures;
+package guleksi.redi.tilegame.entities.creatures;
 
-import guleksi.redi.gfx.Assets;
+import guleksi.redi.tilegame.gfx.Assets;
 import guleksi.redi.tilegame.Game;
 
 import java.awt.*;
 
 public class Player extends Creature {
 
-    private Game game;
-
     public Player(Game game, float x, float y) {
-        super(x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
-        this.game = game;
+        super(game, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
     }
 
     @Override
     public void tick() {
         getInput();
         move();
+        game.getGameCamera().centerOnEntity(this);
     }
 
     private void getInput() {
@@ -40,7 +38,7 @@ public class Player extends Creature {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.player1, (int) x, (int) y, width, height, null);
+        g.drawImage(Assets.player1, (int) (x - game.getGameCamera().getxOffset()), (int) (y - game.getGameCamera().getyOffset()), width, height, null);
     }
 
 }
