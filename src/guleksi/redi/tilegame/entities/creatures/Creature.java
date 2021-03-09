@@ -1,7 +1,8 @@
 package guleksi.redi.tilegame.entities.creatures;
 
-import guleksi.redi.tilegame.Game;
+import guleksi.redi.tilegame.Handler;
 import guleksi.redi.tilegame.entities.Entity;
+import guleksi.redi.tilegame.tiles.Tile;
 
 public abstract class Creature extends Entity {
 
@@ -15,17 +16,60 @@ public abstract class Creature extends Entity {
     protected float xMove, yMove;
 
 
-    public Creature(Game game, float x, float y, int width, int height) {
-        super(game, x, y, width, height);
+    public Creature(Handler handler, float x, float y, int width, int height) {
+        super(handler, x, y, width, height);
         health = DEFAULT_HEALTH;
         speed = DEFAULT_SPEED;
         xMove = 0;
         yMove = 0;
     }
 
+    // Collision Detection for x (right, left)
+    public void moveX() {
+        if (xMove > 0) { // Moving right
+            int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILE_WIDTH;
+
+            if (!collisionWithTile(tx, (int) (y + bounds.y) / Tile.TILE_HEIGHT) &&
+                    !collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)) {
+                x += xMove;
+            }
+        } else if (xMove < 0) { // Moving left
+            int tx = (int) (x + xMove + bounds.x) / Tile.TILE_WIDTH;
+
+            if (!collisionWithTile(tx, (int) (y + bounds.y) / Tile.TILE_HEIGHT) &&
+                    !collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)) {
+                x += xMove;
+            }
+        }
+
+    }
+
+    // Collision Detection for y (up, down)
+    public void moveY() {
+        if (yMove < 0) { // Up
+            int ty = (int) (y + yMove + bounds.y) / Tile.TILE_HEIGHT;
+
+            if (!collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, ty) &&
+                    !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH, ty)) {
+                y += yMove;
+            }
+        } else if (yMove > 0) { // Down
+            int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILE_HEIGHT;
+
+            if (!collisionWithTile((int) (x + bounds.x) / Tile.TILE_WIDTH, ty) &&
+                    !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILE_WIDTH, ty)) {
+                y += yMove;
+            }
+        }
+    }
+
     public void move() {
-        x += xMove;
-        y += yMove;
+        moveX();
+        moveY();
+    }
+
+    protected boolean collisionWithTile(int x, int y) {
+        return handler.getWorld().getTile(x, y).isSolid();
     }
 
     // GETTERS SETTERS
