@@ -24,6 +24,13 @@ public abstract class Creature extends Entity {
         yMove = 0;
     }
 
+    public void move() {
+        if (!checkEntityCollisions(xMove, 0f))
+            moveX();
+        if (!checkEntityCollisions(0f, yMove))
+            moveY();
+    }
+
     // Collision Detection for x (right, left)
     public void moveX() {
         if (xMove > 0) { // Moving right
@@ -69,11 +76,6 @@ public abstract class Creature extends Entity {
                 y = ty * Tile.TILE_HEIGHT - bounds.y - bounds.height - 1;
             }
         }
-    }
-
-    public void move() {
-        moveX();
-        moveY();
     }
 
     protected boolean collisionWithTile(int x, int y) {
