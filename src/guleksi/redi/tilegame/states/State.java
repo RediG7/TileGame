@@ -1,6 +1,6 @@
 package guleksi.redi.tilegame.states;
 
-import guleksi.redi.tilegame.Game;
+import guleksi.redi.tilegame.Handler;
 
 import java.awt.*;
 
@@ -22,10 +22,10 @@ public abstract class State {
 
     // CLASS
 
-    protected Game game;
+    protected Handler handler;
 
-    public State(Game game) {
-        this.game = game;
+    public State(Handler handler) {
+        this.handler = handler;
     }
 
     public abstract void tick();

@@ -1,13 +1,13 @@
 package guleksi.redi.tilegame.states;
 
-import guleksi.redi.tilegame.Game;
+import guleksi.redi.tilegame.Handler;
 
 import java.awt.*;
 
 public class MenuState extends State{
 
-    public MenuState(Game game) {
-        super(game);
+    public MenuState(Handler handler) {
+        super(handler);
     }
 
     @Override
