@@ -38,8 +38,11 @@ public class Game implements Runnable {
     // Input
     private KeyManager keyManager;
 
-    // Camer
+    // Camera
     private GameCamera gameCamera;
+
+    // Handler
+    private Handler handler;
 
     // temp code
     // private BufferedImage testImage1;
@@ -59,10 +62,11 @@ public class Game implements Runnable {
         display.getFrame().addKeyListener(keyManager);
         Assets.init();
 
-        gameCamera = new GameCamera(this, 0, 0);
+        handler = new Handler(this);
+        gameCamera = new GameCamera(handler, 0, 0);
 
-        gameState = new GameState(this);
-        menuState = new MenuState(this);
+        gameState = new GameState(handler);
+        menuState = new MenuState(handler);
         State.setState(gameState);
         // Tests
         /*
