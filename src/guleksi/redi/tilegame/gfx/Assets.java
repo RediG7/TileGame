@@ -12,7 +12,7 @@ public class Assets {
     // is going to load in everything for our game
     // and it's going to be called once
     public static void init() {
-        SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
+        SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet3.png"));
         SpriteSheet sheet2 = new SpriteSheet(ImageLoader.loadImage("/textures/sheet2.png"));
 
         player_still = new BufferedImage[1];
@@ -35,7 +35,7 @@ public class Assets {
         dirt = sheet.crop(width, 0, width, height);
         grass = sheet.crop(width * 2, 0, width, height);
         stone = sheet.crop(width * 3, 0, width, height);
-        tree = sheet.crop(0, 0, width, height);
+        tree = sheet.crop(0, 0, width, height * 2);
 
     }
 
