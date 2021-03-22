@@ -1,0 +1,7 @@
+package guleksi.redi.tilegame.ui;
+
+public interface ClickListener {
+
+    public void onClick();
+
+}
