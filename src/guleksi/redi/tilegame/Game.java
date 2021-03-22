@@ -4,6 +4,7 @@ import guleksi.redi.tilegame.display.Display;
 import guleksi.redi.tilegame.gfx.Assets;
 import guleksi.redi.tilegame.gfx.GameCamera;
 import guleksi.redi.tilegame.input.KeyManager;
+import guleksi.redi.tilegame.input.MouseManager;
 import guleksi.redi.tilegame.states.GameState;
 import guleksi.redi.tilegame.states.MenuState;
 import guleksi.redi.tilegame.states.State;
@@ -32,11 +33,12 @@ public class Game implements Runnable {
     private Graphics g; // (object)
 
     // State
-    private State gameState;
-    private State menuState;
+    public State gameState; // public so we can access them easier
+    public State menuState; // public so we can access them easier
 
     // Input
     private KeyManager keyManager;
+    private MouseManager mouseManager;
 
     // Camera
     private GameCamera gameCamera;
@@ -54,12 +56,18 @@ public class Game implements Runnable {
         this.height = height;
         this.title = title;
         keyManager = new KeyManager();
+        mouseManager = new MouseManager();
     }
 
     private void init() {
         // init display
         display = new Display(title, width, height);
         display.getFrame().addKeyListener(keyManager);
+        // ja vendosim dhe JFrame dhe canvas mousemanager sepse kushdo qe te jete focused can fire the event
+        display.getFrame().addMouseListener(mouseManager);
+        display.getFrame().addMouseMotionListener(mouseManager);
+        display.getCanvas().addMouseListener(mouseManager);
+        display.getCanvas().addMouseMotionListener(mouseManager);
         Assets.init();
 
         handler = new Handler(this);
@@ -67,7 +75,8 @@ public class Game implements Runnable {
 
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
-        State.setState(gameState);
+        State.setState(menuState);
+
         // Tests
         /*
         try {
@@ -163,6 +172,10 @@ public class Game implements Runnable {
 
     public KeyManager getKeyManager() {
         return keyManager;
+    }
+
+    public MouseManager getMouseManager() {
+        return mouseManager;
     }
 
     public GameCamera getGameCamera() {
